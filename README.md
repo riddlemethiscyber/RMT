@@ -66,7 +66,7 @@ Whether it’s a misconfigured Entra ID policy, an exposed dev box, or wide-open
 >
 > **Get a complimentary external vulnerability scan** and summary report. No commitments, just clarity.
 
-[Email us to schedule](mailto:info@riddlecyber.com)
+[Email us to schedule](mailto:chris@riddlemethiscyber.com)
 
 ---
 
@@ -96,7 +96,7 @@ We’re Ohio-based, automation-first, and obsessed with delivering real value—
 
 ## 📬 Get In Touch
 
-📧 [info@riddlecyber.com](mailto:info@riddlecyber.com)  
+📧 [chris@riddlemethiscyber.com](mailto:chris@riddlemethiscyber.com)  
 📍 Based in Cleveland, serving Northeast Ohio and beyond
 
 ---
