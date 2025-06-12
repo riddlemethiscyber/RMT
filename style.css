@@ -62,12 +62,13 @@ a:hover {
 
 /* --- Header & Navigation --- */
 header {
-    background-color: rgba(33, 37, 53, 0.8);
+    background-color: rgba(33, 37, 53, 0.95); /* Slightly less transparent */
     backdrop-filter: blur(10px);
     position: fixed;
     width: 100%;
     z-index: 100;
     border-bottom: 1px solid var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Added subtle shadow */
 }
 
 nav.container {
@@ -79,6 +80,23 @@ nav.container {
 
 .logo-img {
     height: 50px;
+}
+
+/* --- Mobile Navigation (Hamburger Menu) --- */
+.menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+.menu-toggle span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--primary-teal);
+    margin-bottom: 4px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
 nav ul {
@@ -119,6 +137,7 @@ nav ul li a {
     justify-content: center;
     text-align: center;
     padding-top: 80px; /* Offset for fixed header */
+    box-sizing: border-box; /* Ensures padding is included in height */
 }
 
 #hero h1 {
@@ -126,6 +145,7 @@ nav ul li a {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    color: var(--white); /* Ensure hero text is white */
 }
 
 .subtitle {
@@ -279,27 +299,164 @@ footer {
 }
 
 /* --- Responsive Design --- */
-@media (max-width: 768px) {
+@media (max-width: 992px) { /* Adjust breakpoint for larger tablets/smaller desktops */
+    .container {
+        padding: 0 1.5rem; /* Slightly less padding */
+    }
+
     h1 {
-        font-size: 2.8rem;
+        font-size: 3.2rem;
     }
     h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
-    nav {
-        flex-direction: column;
-        height: auto;
-        padding: 1rem 0;
+    h3 {
+        font-size: 1.8rem;
     }
-    nav ul {
-        margin-top: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    nav ul li {
-        margin: 0.5rem;
-    }
-    .form-group {
-        flex-direction: column;
+
+    #hero h1 {
+        font-size: 3.5rem; /* Slightly smaller on tablets */
     }
 }
+
+@media (max-width: 768px) {
+    /* Header & Navigation */
+    nav.container {
+        flex-direction: row; /* Keep logo and hamburger on one line */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav ul {
+        display: none; /* Hide navigation links by default */
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--dark-bg); /* Match header background */
+        position: absolute;
+        top: 80px; /* Below the header */
+        left: 0;
+        padding: 1rem 0;
+        border-top: 1px solid var(--card-bg);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    nav ul.active {
+        display: flex; /* Show when active */
+    }
+
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0;
+    }
+
+    nav ul li a {
+        padding: 0.8rem 1rem;
+        display: block;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: flex; /* Show hamburger menu */
+        z-index: 101; /* Ensure it's above other content */
+    }
+
+    /* Hero Section */
+    #hero {
+        height: auto; /* Adjust height dynamically */
+        min-height: 70vh; /* Minimum height */
+        padding: 120px 20px 60px; /* More padding top for fixed header, padding bottom */
+    }
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+    .subtitle {
+        font-size: 1rem;
+    }
+    .cta-button {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    /* General Sections */
+    section {
+        padding: 4rem 0; /* Reduced vertical padding */
+    }
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    /* Grid Layout */
+    .grid-layout {
+        grid-template-columns: 1fr; /* Stack cards on mobile */
+        gap: 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    /* Contact Form */
+    .form-group {
+        flex-direction: column; /* Stack input fields */
+        gap: 1rem;
+    }
+
+    input, textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+    .container {
+        padding: 0 1rem; /* Even less padding on very small screens */
+    }
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    .cta-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    .logo-img {
+        height: 40px; /* Slightly smaller logo */
+    }
+    nav {
+        height: 70px; /* Slightly shorter header */
+    }
+}
+
+/* JavaScript for Mobile Menu Toggle */
+/* This part needs to go into a <script> tag in your index.html,
+   preferably at the end of the <body>, just before the closing </body> tag. */
+/*
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('nav ul');
+
+    if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', function() {
+            navUl.classList.toggle('active');
+            menuToggle.classList.toggle('open'); // Optional: for animating hamburger to X
+        });
+    }
+});
+*/
