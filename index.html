@@ -152,6 +152,24 @@
             <!-- Optional: Add social media links here -->
         </div>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.createElement('div');
+        menuToggle.classList.add('menu-toggle');
+        menuToggle.innerHTML = '<span></span><span></span><span></span>';
+        
+        const navContainer = document.querySelector('nav.container');
+        const navUl = document.querySelector('nav ul');
 
+        if (navContainer && navUl) {
+            navContainer.insertBefore(menuToggle, navUl); // Insert toggle button before ul
+
+            menuToggle.addEventListener('click', function() {
+                navUl.classList.toggle('active');
+                menuToggle.classList.toggle('open'); // Optional: add class to animate hamburger to X
+            });
+        }
+    });
+</script>
 </body>
 </html>
